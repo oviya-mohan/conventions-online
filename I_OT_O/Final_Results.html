@@ -1,0 +1,28 @@
+{{ block title }}
+<center> Results </center>
+{{ endblock }}
+
+
+
+{{ block content }}
+
+<style>
+  .otree-body {
+      max-width: 1920px;
+      height: 1080px;
+}
+
+*{ Color : #ffffff;
+  Background : #000;}
+</style>
+
+<p align = "center">
+You've completed all rounds in the first session! <br>
+Your total score for this session is {{participant.payoff}} <br>
+<br>
+Click Next to proceed to the short quesitonnaire.
+</p>
+<div align ="center">
+  {{ next_button }}
+</div>
+{{ endblock }}
