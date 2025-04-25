@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='I_OT',
         display_name = "Collective Cognition Lab",
-        app_sequence=['I_OT_O', 'I_OT_T'],
+        app_sequence=['I_OT_O'],
         num_demo_participants=2,
         # use_browser_bots = True,
     ),
