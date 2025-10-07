@@ -14,9 +14,9 @@ CCL
 class Constants(BaseConstants):
     name_in_url = 'I_OT_O'
     players_per_group = 2
-    num_rounds = 294
+    # num_rounds = 294
     # for test runthroughs
-    # num_rounds = 21
+    num_rounds = 21
 
 ################################################################################
 #CREATING SESSIONS
