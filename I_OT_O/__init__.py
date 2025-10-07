@@ -198,6 +198,12 @@ class Results_Correct(Page):
      @staticmethod
      def is_displayed(player):
          return player.payoff == 10
+############################ ONLY FOR SECOND APP ###############################
+     def vars_for_template(player):
+        #Calucuate participant.payoff for second session by subtracting
+        #first_total from participant.payoff
+        return dict(current_total = player.participant.payoff)
+################################################################################
 
 #Red_Flash - screen flashes red when players do NOT choose the same color
 class Red_Flash(Page):
@@ -214,6 +220,12 @@ class Results_Wrong(Page):
      @staticmethod
      def is_displayed(player):
          return player.payoff == 0
+############################ ONLY FOR SECOND APP ###############################
+     def vars_for_template(player):
+       #Calucuate participant.payoff for second session by subtracting
+       #first_total from participant.payoff
+        return dict( current_total = player.participant.payoff)
+################################################################################
 
 class WaitForPlayer(WaitPage):
     pass
@@ -238,6 +250,12 @@ class Final_Results(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds
+############################ ONLY FOR SECOND APP ###############################
+    def vars_for_template(player):
+      #Calucuate participant.payoff for second session by subtracting
+      #first_total from participant.payoff
+       return dict(current_total = player.participant.payoff)
+################################################################################
 
 #page with questions - defined in Constants
 class Questions(Page):
@@ -254,8 +272,8 @@ class Thanks(Page):
 ############################ ONLY FOR FIRST APP ################################
         #store total payoff for this app into a participant_field called
         #first_total defined in settings.py to access from second app
-        sum = player.participant.payoff
-        player.participant.first_total = sum
+        # sum = player.participant.payoff
+        # player.participant.first_total = sum
 ################################################################################
         return player.round_number == Constants.num_rounds
 
@@ -315,4 +333,4 @@ def custom_export(players):
             loser = left_stimuli
         yield [session.code, participant.code, p.round_number, p.id_in_group,
         left_stimuli, right_stimuli, response, loser, p.answered_time, p.payoff,
-        participant.first_total]
+        participant.payoff]
