@@ -16,7 +16,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     # num_rounds = 294
     # for test runthroughs
-    num_rounds = 21
+    num_rounds = 2
 
 ################################################################################
 #CREATING SESSIONS
