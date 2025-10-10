@@ -1,6 +1,7 @@
 from otree.api import *
 from random import randint
 import numpy as np
+import uuid
 
 
 doc = """
@@ -93,6 +94,7 @@ class Player(BasePlayer):
     age = models.IntegerField(label = "Age: ")
     sex = models.StringField(label = "Sex: ")
     email = models.StringField(label = "Email: ")
+    completion_code = models.StringField()
 ################################################################################
     response = models.IntegerField()
     answered_time = models.IntegerField()
@@ -283,18 +285,17 @@ class Questions(Page):
 class Thanks(Page):
     @staticmethod
     def is_displayed(player):
-############################ ONLY FOR FIRST APP ################################
-        #store total payoff for this app into a participant_field called
-        #first_total defined in settings.py to access from second app
-        # sum = player.participant.payoff
-        # player.participant.first_total = sum
-################################################################################
+        # Store total payoff for this app
         return player.round_number == Constants.num_rounds
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        # Generate and store a unique completion code for the player
+        player.completion_code = str(uuid.uuid4())
 
 ################################################################################
 #defining sequences of pages to be presented in the app
-page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice,
-WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 
 #for quick testing purposes ONLY - omits initial pages

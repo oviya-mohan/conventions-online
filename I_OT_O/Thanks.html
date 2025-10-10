@@ -1,22 +1,21 @@
 {{ block title }}
-   <center> Thank you! Here is your completion code: COLLCOGLAB </center>
-{{ endblock }}
-{{ block content }}
-
+<center>Thank you! Here is your completion code:</center>
+{{ endblock }} {{ block content }}
 
 <style>
-.otree-body {
-     max-width: 1920px;
-     height: 1080px;
-}
+  .otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
 
-
-*{ Color : #ffffff;
- Background : #000;}
+  * {
+    color: #ffffff;
+    background: #000;
+  }
 </style>
 
+<div style="text-align: center">
+  <p style="font-size: 24px"><b>{{ player.completion_code }}</b></p>
+</div>
 
 {{ endblock }}
-
-
-
