@@ -18,6 +18,20 @@ class Constants(BaseConstants):
     # for test runthroughs
     num_rounds = 21
 
+#add waiting page for "Room"
+class RoomWaitPage(Page):
+    pass
+
+#add waiting page where grouping happens
+class GroupWaitPage(WaitPage):
+    group_by_arrival_time = True
+    players_per_group = Constants.players_per_group
+    
+    @staticmethod
+    def after_all_players_arrive(subsession):
+        # This function is executed after each group is formed
+        pass
+
 ################################################################################
 #CREATING SESSIONS
 class Subsession(BaseSubsession):
@@ -279,7 +293,7 @@ class Thanks(Page):
 
 ################################################################################
 #defining sequences of pages to be presented in the app
-page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice,
+page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice,
 WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 

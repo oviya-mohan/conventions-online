@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
         name='I_OT',
         display_name = "Collective Cognition Lab",
         app_sequence=['I_OT_O'],
-        num_demo_participants=2,
+        num_demo_participants=0, #0 for using rooms
         # use_browser_bots = True,
     ),
 ]
@@ -31,6 +31,13 @@ SESSION_CONFIG_DEFAULTS =       dict(
     # grant_qualification_id='YOUR_QUALIFICATION_ID_HERE', # to prevent retakes
 ),
     )
+
+ROOMS = [
+    dict(
+        name='my_study_room',
+        display_name='Collective Cognition Lab',
+    ),
+]
 
 
 #defining first_total to pass total payoff in first app to second
