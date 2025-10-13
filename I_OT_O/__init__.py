@@ -24,9 +24,13 @@ class Constants(BaseConstants):
 #     pass
 
 #add waiting page where grouping happens
-class GroupWaitPage(Page):
+class GroupWaitPage(WaitPage):
     group_by_arrival_time = True
-    players_per_group = Constants.players_per_group
+    
+    @staticmethod
+    def is_displayed(player):
+        # Only show this page in round 1 for initial grouping
+        return player.round_number == 1
     
     @staticmethod
     def after_all_players_arrive(group):
@@ -151,10 +155,6 @@ class RepeatParticipant(Page):
 class Info(Page):
     form_model='player'
     form_fields = ['name', 'age', 'sex', 'email']
-
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
     
     @staticmethod
     def is_displayed(player):
@@ -322,7 +322,7 @@ class Thanks(Page):
 
 ################################################################################
 #defining sequences of pages to be presented in the app
-# with rooms
+# with rooms # need to add FinalResults and Questions
 page_sequence = [RepeatParticipant, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 # without room
