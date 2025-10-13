@@ -290,15 +290,9 @@ class Thanks(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        # Generate the completion code here, before the template is rendered.
-        # This code will run every time the page is loaded or reloaded.
-        # It's important to only generate it once.
-        if player.completion_code is None:
-            player.completion_code = str(uuid.uuid4())
-
-        # The function must return a dictionary of variables to be used in the template.
+        # Use participant.code as the completion code
         return {
-            'completion_code': player.completion_code,
+            'completion_code': player.participant.code,
         }
 
 ################################################################################
