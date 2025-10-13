@@ -1,11 +1,19 @@
-{% extends "base.html" %} {% block content %}
-<div class="card bg-light">
-  <div class="card-body">
-    <h3>Welcome!</h3>
-    <p>
-      Thank you for participating. You have been placed in a waiting room. We
-      are waiting for other participants to arrive. The game will begin shortly.
-    </p>
-  </div>
-</div>
-{% endblock %}
+{{ block title }}
+<center>
+  Thank you for participating. You have been placed in a waiting room. We are
+  waiting for other participants to arrive. The game will begin shortly.
+</center>
+{{ endblock }} {{ block content }}
+
+<style>
+  .otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
+  * {
+    color: #ffffff;
+    background: #000;
+  }
+</style>
+
+{{ endblock }}
