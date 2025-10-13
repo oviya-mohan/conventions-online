@@ -29,7 +29,7 @@ class GroupWaitPage(WaitPage):
     players_per_group = Constants.players_per_group
     
     @staticmethod
-    def after_all_players_arrive(subsession):
+    def after_all_players_arrive(group):
         # This function is executed after each group is formed
         pass
 
