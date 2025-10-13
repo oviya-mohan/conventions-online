@@ -25,6 +25,7 @@ class Constants(BaseConstants):
 
 #add waiting page where grouping happens
 class GroupWaitPage(WaitPage):
+    template_name = 'GroupWaitPage.html'
     group_by_arrival_time = True
     
     @staticmethod
