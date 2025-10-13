@@ -24,7 +24,7 @@ class Constants(BaseConstants):
 #     pass
 
 #add waiting page where grouping happens
-class GroupWaitPage(WaitPage):
+class GroupWaitPage(Page):
     group_by_arrival_time = True
     players_per_group = Constants.players_per_group
     
