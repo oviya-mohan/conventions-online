@@ -298,11 +298,11 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms
-# page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-# Break, Thanks]
-# without room
-page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
+# without room
+# page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Thanks]
 
 #for quick testing purposes ONLY - omits initial pages
 # page_sequence = [WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer,
