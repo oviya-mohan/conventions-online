@@ -132,6 +132,21 @@ def set_payoffs(group):
 ################################################################################
 #PAGES
 ############################ ONLY FOR FIRST APP ################################
+
+def already_participated(label):
+    from otree.models import Participant
+    return Participant.objects.filter(label=label).exists()
+
+class RepeatParticipant(Page):
+    @staticmethod
+    def is_displayed(player):
+        label = player.participant.label
+        return label and already_participated(label)
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(worker_id=player.participant.label)
+
 #Info - first page to be displayed for the session - get players' name
 class Info(Page):
     form_model='player'
@@ -140,6 +155,16 @@ class Info(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
+    
+    @staticmethod
+    def is_displayed(player):
+        if player.round_number != 1:
+            return False
+        label = player.participant.label
+        if label and already_participated(label):
+            # participant already exists in DB
+            return False
+        return True
 ################################################################################
 
 #Instructions - displsyed at the beggining of the app
@@ -298,7 +323,7 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms
-page_sequence = [RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [RepeatParticipant, RoomWaitPage, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 # without room
 # page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,

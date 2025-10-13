@@ -34,7 +34,7 @@ SESSION_CONFIG_DEFAULTS =       dict(
 
 ROOMS = [
     dict(
-        name='my_study_room',
+        name='ccl_room',
         display_name='Collective Cognition Lab',
     ),
 ]
