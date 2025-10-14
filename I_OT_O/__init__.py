@@ -155,7 +155,8 @@ class RepeatParticipant(Page):
 #Info - first page to be displayed for the session - get players' name
 class Info(Page):
     form_model='player'
-    form_fields = ['name', 'age', 'sex', 'email']
+    # form_fields = ['name', 'age', 'sex', 'email']
+    form_fields = ['name']
     
     @staticmethod
     def is_displayed(player):
@@ -169,7 +170,7 @@ class Info(Page):
 ################################################################################
 
 #Instructions - displsyed at the beggining of the app
-class Instructions(Page):
+class demo_instructions(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
@@ -324,11 +325,14 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
-page_sequence = [RepeatParticipant, GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-Break, Thanks]
+# page_sequence = [GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Thanks]
 # without room
 # page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
+
+#demo_seq
+page_sequence = [GroupWaitPage, Info, demo_instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,Thanks]
 
 #for quick testing purposes ONLY - omits initial pages
 # page_sequence = [WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer,
@@ -342,17 +346,18 @@ Break, Thanks]
 #before running AGAIN - THIS IS A MUST OR SESSION DATA WILL OVERWRITE!!
 def custom_export(players):
     #header row #1
-    #NAME IS ONLY FOR FIRST APP
-    yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
+    # yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
+    yield['participant_number', 'participant_code', 'name']
     for p in players:
         answer = p.Q
         name = p.name
-        age = p.age
-        sex = p.sex
-        email = p.email
+        # age = p.age
+        # sex = p.sex
+        # email = p.email
         #write only for first (name) and last (answer) round
         if p.round_number == 1 or p.round_number == Constants.num_rounds:
-            yield[p.id_in_group, p.participant.code, age, sex, name, email]
+            # yield[p.id_in_group, p.participant.code, age, sex, name, email]
+            yield[p.id_in_group, p.participant.code, name]
 
     # header row #2
     yield ['session', 'participant_code', 'round_number', 'participant_number',
