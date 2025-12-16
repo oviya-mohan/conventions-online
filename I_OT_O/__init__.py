@@ -272,12 +272,14 @@ class Results_Wrong(Page):
 
 class WaitForPlayer(WaitPage):
     title_text = "Loading next round..."
+    body_text = " "
     pass
 
 #calculates payoff via set_payoff function once both
 #players have made thier choice
 class ResultsWaitPage(WaitPage):
     title_text = "Processing choice..."
+    body_text = " "
     after_all_players_arrive = set_payoffs
 
 #break page that only gets executed on certain round numbers
