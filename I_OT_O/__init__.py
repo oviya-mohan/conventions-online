@@ -170,7 +170,7 @@ class Info(Page):
 ################################################################################
 
 #Instructions - displsyed at the beggining of the app
-class Instructions(Page):
+class Instructions_with_inst(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
@@ -328,7 +328,7 @@ class Thanks(Page):
 # page_sequence = [GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
 # without room
-page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 
 # demo_seq
