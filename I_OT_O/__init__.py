@@ -119,8 +119,8 @@ def set_payoffs(group):
     #set payoff to 10 when both reposnses are the same
     if color_1_list_1[p1.round_number-1] == color_1_list_2[p2.round_number-1]:
         if p1.response == p2.response:
-            p1.payoff = 10
-            p2.payoff = 10
+            p1.payoff = 1
+            p2.payoff = 1
         else:
             p1.payoff = 0
             p2.payoff = 0
@@ -131,8 +131,8 @@ def set_payoffs(group):
             p1.payoff = 0
             p2.payoff = 0
         else:
-            p1.payoff = 10
-            p2.payoff = 10
+            p1.payoff = 1
+            p2.payoff = 1
 
 ################################################################################
 #PAGES
@@ -240,7 +240,7 @@ class Show_Choice(Page):
 class Results_Correct(Page):
      @staticmethod
      def is_displayed(player):
-         return player.payoff == 10
+         return player.payoff == 1
 ############################ ONLY FOR SECOND APP ###############################
      def vars_for_template(player):
         #Calucuate participant.payoff for second session by subtracting
