@@ -275,6 +275,11 @@ class WaitForPlayer(WaitPage):
     body_text = " "
     pass
 
+class WaitForPlayerResults(WaitPage):
+    title_text = "Processing choice..."
+    body_text = " "
+    pass
+
 #calculates payoff via set_payoff function once both
 #players have made thier choice
 class ResultsWaitPage(WaitPage):
@@ -332,7 +337,7 @@ class Thanks(Page):
 # page_sequence = [GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
 # without room
-page_sequence = [Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 
 # demo_seq
