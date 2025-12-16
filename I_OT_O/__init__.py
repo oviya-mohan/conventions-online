@@ -329,7 +329,7 @@ class Thanks(Page):
 # Break, Thanks]
 # without room
 page_sequence = [Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-# Break, Thanks]
+Break, Thanks]
 
 # demo_seq
 # page_sequence = [GroupWaitPage, Info, demo_instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,Thanks]
