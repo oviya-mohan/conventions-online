@@ -95,10 +95,10 @@ class Group(BaseGroup):
 #define here under class Player
 class Player(BasePlayer):
 ############################ ONLY FOR FIRST APP ################################
-    name = models.StringField(label = "Name: ")
+    # name = models.StringField(label = "Name: ")
     age = models.IntegerField(label = "Age: ")
     sex = models.StringField(label = "Sex: ")
-    email = models.StringField(label = "Email: ")
+    # email = models.StringField(label = "Email: ")
     completion_code = models.StringField()
 ################################################################################
     response = models.IntegerField()
@@ -155,8 +155,8 @@ class RepeatParticipant(Page):
 #Info - first page to be displayed for the session - get players' name
 class Info(Page):
     form_model='player'
-    # form_fields = ['name', 'age', 'sex', 'email']
-    form_fields = ['name']
+    form_fields = [ 'age', 'sex']
+    # form_fields = ['name']
     
     @staticmethod
     def is_displayed(player):
@@ -334,11 +334,11 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
-# page_sequence = [GroupWaitPage, Info, Instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-# Break, Thanks]
-# without room
-page_sequence = [Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
+# without room
+# page_sequence = [Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Thanks]
 
 # demo_seq
 # page_sequence = [GroupWaitPage, Info, demo_instructions, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,Thanks]
@@ -356,17 +356,16 @@ Break, Thanks]
 def custom_export(players):
     #header row #1
     # yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
-    yield['participant_number', 'participant_code', 'name']
+    yield['participant_number', 'participant_code', 'age' , 'sex']
     for p in players:
         answer = p.Q
-        name = p.name
-        # age = p.age
-        # sex = p.sex
+        age = p.age
+        sex = p.sex
         # email = p.email
         #write only for first (name) and last (answer) round
         if p.round_number == 1 or p.round_number == Constants.num_rounds:
             # yield[p.id_in_group, p.participant.code, age, sex, name, email]
-            yield[p.id_in_group, p.participant.code, name]
+            yield[p.id_in_group, p.participant.code, age, sex]
 
     # header row #2
     yield ['session', 'participant_code', 'round_number', 'participant_number',
