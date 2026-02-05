@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     # num_rounds = 294
     # for test runthroughs
-    num_rounds = 588
+    num_rounds = 294
 
 #add waiting page for "Room"
 # class RoomWaitPage(Page):
@@ -271,7 +271,7 @@ class Results_Wrong(Page):
 ################################################################################
 
 class WaitForPlayer(WaitPage):
-    title_text = "Loading next round..."
+    title_text = "Loading next round... \n Do not switch tabs or leave this page."
     body_text = " "
     pass
 
