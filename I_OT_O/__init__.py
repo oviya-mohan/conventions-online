@@ -334,7 +334,7 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
-page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayer, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Thanks]
 # without room
 # page_sequence = [Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
