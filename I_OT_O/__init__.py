@@ -335,7 +335,7 @@ class Thanks(Page):
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
 page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-Break, Thanks]
+Break, Final_Results, Questions, Thanks]
 # without room
 # page_sequence = [Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
@@ -356,7 +356,7 @@ Break, Thanks]
 def custom_export(players):
     #header row #1
     # yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
-    yield['participant_number', 'participant_code', 'age' , 'sex']
+    yield['participant_number', 'participant_code', 'age' , 'sex','answer']
     for p in players:
         answer = p.Q
         age = p.age
@@ -365,7 +365,7 @@ def custom_export(players):
         #write only for first (name) and last (answer) round
         if p.round_number == 1 or p.round_number == Constants.num_rounds:
             # yield[p.id_in_group, p.participant.code, age, sex, name, email]
-            yield[p.id_in_group, p.participant.code, age, sex]
+            yield[p.id_in_group, p.participant.code, age, sex, answer]
 
     # header row #2
     yield ['session', 'participant_code', 'round_number', 'participant_number',
