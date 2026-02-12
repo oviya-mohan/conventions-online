@@ -102,13 +102,15 @@ class Player(BasePlayer):
     completion_code = models.StringField()
 ################################################################################
     answered_time = models.IntegerField()
-    Q = models.StringField(
+    response = models.IntegerField()
+    
+    Q = models.LongStringField(
         label = "Describe the strategy you used to solve the task. Be as detailed as possible (max. 50 words).?"
     )
-    response = models.IntegerField()
-    Q_1 = models.StringField(
+    Q_1 = models.LongStringField(
         label = "How would you explain the best way to solve this task to someone who is about to do it for the first time? (max. 50 words)"
     )
+    
 
 ################################################################################
 #FUNCTIONS
