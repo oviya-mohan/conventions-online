@@ -366,7 +366,7 @@ Break, Final_Results, Questions, Questions_1, Thanks]
 def custom_export(players):
     #header row #1
     # yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
-    yield['participant_number', 'participant_code', 'age' , 'sex','answer']
+    yield['participant_number', 'participant_code', 'age' , 'sex','answer', 'answer_1']
     for p in players:
         answer = p.Q
         answer_1 = p.Q_1
