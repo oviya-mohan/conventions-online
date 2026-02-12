@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     # num_rounds = 294
     # for test runthroughs
-    num_rounds = 294
+    num_rounds = 21
 
 #add waiting page for "Room"
 # class RoomWaitPage(Page):
@@ -101,10 +101,13 @@ class Player(BasePlayer):
     # email = models.StringField(label = "Email: ")
     completion_code = models.StringField()
 ################################################################################
-    response = models.IntegerField()
     answered_time = models.IntegerField()
     Q = models.StringField(
-        label = "What strategy did you use to maximize your reward in this session?"
+        label = "Describe the strategy you used to solve the task. Be as detailed as possible (max. 50 words).?"
+    )
+    response = models.IntegerField()
+    Q_1 = models.StringField(
+        label = "How would you explain the best way to solve this task to someone who is about to do it for the first time? (max. 50 words)"
     )
 
 ################################################################################
@@ -316,6 +319,13 @@ class Questions(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds
+    
+class Questions_1(Page):
+    form_model = 'player'
+    form_fields = ['Q_1']
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
 
 #Final page of app - use "Advance Slowest Users" after this to move to next app
 class Thanks(Page):
@@ -335,7 +345,7 @@ class Thanks(Page):
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
 page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-Break, Final_Results, Questions, Thanks]
+Break, Final_Results, Questions, Questions_1, Thanks]
 # without room
 # page_sequence = [Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
@@ -359,13 +369,14 @@ def custom_export(players):
     yield['participant_number', 'participant_code', 'age' , 'sex','answer']
     for p in players:
         answer = p.Q
+        answer_1 = p.Q_1
         age = p.age
         sex = p.sex
         # email = p.email
         #write only for first (name) and last (answer) round
         if p.round_number == 1 or p.round_number == Constants.num_rounds:
             # yield[p.id_in_group, p.participant.code, age, sex, name, email]
-            yield[p.id_in_group, p.participant.code, age, sex, answer]
+            yield[p.id_in_group, p.participant.code, age, sex, answer, answer_1]
 
     # header row #2
     yield ['session', 'participant_code', 'round_number', 'participant_number',
