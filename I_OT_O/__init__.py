@@ -179,6 +179,16 @@ class Instructions_with_inst(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
+    
+class Instructions_no_inst(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+    
+class Instructions_no_player(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
 
 #Make_Choice - participants are presented with the two stimuli
 #they can make the choice by clicking on either one of the stimuli
@@ -346,8 +356,20 @@ class Thanks(Page):
 ################################################################################
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
-page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+
+# with_instructions
+# page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
+
+# with_no_instructions
+page_sequence = [GroupWaitPage, Info, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Final_Results, Questions, Questions_1, Thanks]
+
+# with_no_player
+# page_sequence = [GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
+
+
 # without room
 # page_sequence = [Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, WaitForPlayerResults, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Thanks]
