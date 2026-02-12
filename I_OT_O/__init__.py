@@ -15,9 +15,9 @@ CCL
 class Constants(BaseConstants):
     name_in_url = 'I_OT_O'
     players_per_group = 2
-    # num_rounds = 294
+    num_rounds = 294
     # for test runthroughs
-    num_rounds = 21
+    # num_rounds = 21
 
 #add waiting page for "Room"
 # class RoomWaitPage(Page):
@@ -105,7 +105,7 @@ class Player(BasePlayer):
     response = models.IntegerField()
     
     Q = models.LongStringField(
-        label = "Describe the strategy you used to solve the task. Be as detailed as possible (max. 50 words).?"
+        label = "Describe the strategy you used to solve the task. Be as detailed as possible. (max. 50 words)"
     )
     Q_1 = models.LongStringField(
         label = "How would you explain the best way to solve this task to someone who is about to do it for the first time? (max. 50 words)"
