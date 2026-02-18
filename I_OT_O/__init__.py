@@ -174,6 +174,15 @@ class Info(Page):
         return True
 ################################################################################
 
+###############################################################################
+#Consent form for Prolific
+
+class Consent(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+    
+
 #Instructions - displsyed at the beggining of the app
 class Instructions_with_inst(Page):
     @staticmethod
@@ -357,6 +366,20 @@ class Thanks(Page):
 #defining sequences of pages to be presented in the app
 # with rooms # need to add FinalResults and Questions
 
+########################### For Prolific ########################################
+# with_instructions
+# page_sequence = [Consent, GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
+
+# with_no_instructions
+# page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
+
+# with_no_player
+page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+Break, Final_Results, Questions, Questions_1, Thanks]
+
+######################### For MTurk ##########################################
 # with_instructions
 # page_sequence = [GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 # Break, Final_Results, Questions, Questions_1, Thanks]
@@ -366,8 +389,8 @@ class Thanks(Page):
 # Break, Final_Results, Questions, Questions_1, Thanks]
 
 # with_no_player
-page_sequence = [GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-Break, Final_Results, Questions, Questions_1, Thanks]
+# page_sequence = [GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
 
 
 # without room
