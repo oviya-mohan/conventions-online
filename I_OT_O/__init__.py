@@ -105,10 +105,10 @@ class Player(BasePlayer):
     response = models.IntegerField()
     
     Q = models.LongStringField(
-        label = "Describe the strategy you used to solve the task. Be as detailed as possible. (max. 50 words)"
+        label = "Describe the strategy you used to solve the task. Be as detailed as possible. (max. 50 words, please do not use AI generated responses)"
     )
     Q_1 = models.LongStringField(
-        label = "How would you explain the best way to solve this task to someone who is about to do it for the first time? (max. 50 words)"
+        label = "How would you explain the best way to solve this task to someone who is about to do it for the first time? (max. 50 words, please do not use AI generated responses)"
     )
     
 
