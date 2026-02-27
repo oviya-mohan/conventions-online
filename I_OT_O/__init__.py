@@ -368,8 +368,8 @@ class Thanks(Page):
 
 ########################### For Prolific ########################################
 # with_instructions
-# page_sequence = [Consent, GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-# Break, Final_Results, Questions, Questions_1, Thanks]
+page_sequence = [Consent, GroupWaitPage, Info, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+Break, Final_Results, Questions, Questions_1, Thanks]
 
 # with_no_instructions
 # page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
@@ -389,8 +389,8 @@ class Thanks(Page):
 # Break, Final_Results, Questions, Questions_1, Thanks]
 
 # with_no_player
-page_sequence = [GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
-Break, Final_Results, Questions, Questions_1, Thanks]
+# page_sequence = [GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# Break, Final_Results, Questions, Questions_1, Thanks]
 
 
 # without room
