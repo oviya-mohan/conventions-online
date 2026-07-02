@@ -11,10 +11,11 @@ CCL
 ################################################################################
 #CONSTANTS
 #define constants used throught this app
-#change num_rounds to the required number of rounds - must be a multiple of 21
+#change num_rounds to the required number of rounds - must be a multiple of 21 for 7 colors, 10 for 5 colors
 class Constants(BaseConstants):
     name_in_url = 'I_OT_O'
     players_per_group = 2
+    num_rounds = 300 
     num_rounds = 294
     # for test runthroughs
     # num_rounds = 21
@@ -48,16 +49,21 @@ class Subsession(BaseSubsession):
 def creating_session(subsession: Subsession):
     session = subsession.session
     #all 21 possible combinations of the 7 colors
-    combinations = [[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [2, 3],
-    [2, 4], [2, 5], [2, 6], [2, 7], [3, 4], [3, 5], [3, 6], [3, 7], [4, 5],
+    # combinations = [[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [2, 3],
+    # [2, 4], [2, 5], [2, 6], [2, 7], [3, 4], [3, 5], [3, 6], [3, 7], [4, 5],
+    # [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
+
+    #all 10 possible combinations of 5 colors, exclusing tan(2) and dark blue(3)
+    combinations = [ [1, 4], [1, 5], [1, 6], [1, 7], [4, 5],
     [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
 
     #creates a matrix of matrices with randomized order of the above
     #combinations for all rounds in the session (defined by num_rounds)
-    #each set of 21 rounds has all possible combinations
+    #each set of 21/10 rounds has all possible combinations
     global matrices
     matrices = []
-    for i in range(0, int(Constants.num_rounds/21)):
+    # for i in range(0, int(Constants.num_rounds/21)):
+    for i in range(0, int(Constants.num_rounds/10)):
         np.random.shuffle(combinations)
         for j in range(0, len(combinations)):
             matrices.append(combinations[j])
