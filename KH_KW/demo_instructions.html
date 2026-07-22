@@ -1,0 +1,61 @@
+{{ block title }} {{ endblock }} {{ block content }}
+
+<style>
+  .otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
+  .tab {
+    margin-left: 175px;
+    margin-right: 175px;
+    font-size: 24px;
+  }
+
+  * {
+    color: #ffffff;
+    background: #000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<h1 align="center">Instructions</h1>
+
+<br /><br />
+<p class="tab">
+  In this study, you will be required to complete a simple decision-making task.
+  <br /><br />
+
+  In each round, you will be shown two colored squares. Please select one of the
+  squares by clicking on it.
+  <b
+    ><span style="color: rgb(227, 187, 76)">
+      Depending on your and your partner’s choice, you will either both be
+      rewarded with 10 points, or neither of you will be rewarded.</span
+    ></b
+  >
+  The reward will be shown to you before you proceed to the next round.
+
+  <br />
+  <br />
+
+  <b
+    ><span style="color: rgb(227, 187, 76)">
+      Your aim is to maximize your reward.
+    </span></b
+  >
+  <br /><br />
+
+  There are a total of
+  <b><span style="color: rgb(227, 187, 76)">63 rounds </span></b>. <br /><br />
+
+  If you have any questions about the instructions please feel free to ask the
+  experimenter for clarifications before starting the study.<br /><br />
+
+  Click <b> 'Next' </b> to begin.
+</p>
+
+<div align="center">{{next_button}}</div>
+{{ endblock }}

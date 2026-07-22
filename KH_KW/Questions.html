@@ -1,0 +1,75 @@
+{{ block title }} Question 1/2 {{ endblock }} {{ block content }}
+
+<style>
+  .otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
+
+  /* Your existing dark mode styles */
+  * {
+    color: #ffffff;
+    background: #000;
+  }
+
+  /* Make the text box bigger and visible against black background */
+  textarea {
+    width: 70%;
+    height: 150px; /* Adjust this to make the box even bigger */
+    background-color: #222; /* Slightly lighter gray so you can see the box */
+    color: white;
+    border: 1px solid #444;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+
+  #word-counter-container {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .limit-exceeded {
+    color: #ff4444 !important; /* Red highlight when over limit */
+  }
+</style>
+
+{{ formfields }}
+
+<div id="word-counter-container">
+  Words: <span id="word-count">0</span> / 50
+</div>
+
+{{ next_button }} {{ endblock }} {{ block scripts }}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.querySelector("textarea");
+    const countDisplay = document.getElementById("word-count");
+    const nextButton = document.querySelector(".otree-next-button");
+    const MAX_WORDS = 50;
+
+    textarea.addEventListener("input", function () {
+      // Split by spaces, newlines, and tabs, filtering out empty results
+      const words = this.value
+        .trim()
+        .split(/\s+/)
+        .filter((w) => w.length > 0);
+      const currentCount = words.length;
+
+      countDisplay.innerText = currentCount;
+
+      if (currentCount > MAX_WORDS) {
+        // UI feedback for being over the limit
+        countDisplay.classList.add("limit-exceeded");
+        nextButton.disabled = true;
+        nextButton.innerText = "Too many words";
+      } else {
+        countDisplay.classList.remove("limit-exceeded");
+        nextButton.disabled = false;
+        nextButton.innerText = "Next";
+      }
+    });
+  });
+</script>
+{{ endblock }}

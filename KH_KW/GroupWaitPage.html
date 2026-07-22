@@ -1,0 +1,28 @@
+{% extends 'otree/WaitPage.html' %} {% block title %} Waiting Room {% endblock
+%} {% block content %}
+<div style="text-align: center; margin-top: 20px">
+  <p>The study will begin shortly!</p>
+  <p>This may take a few mins...</p>
+  <p>Do not switch tabs or leave this page while you wait!</p>
+  <br /><br />
+  <p>
+    <b>
+      If you have been waiting for more than 15 minutes, please RETURN the study
+      and you will get compensated for the time spent waiting ($8/hour) and you
+      can participate in this study again in the future!</b
+    >
+  </p>
+</div>
+
+<style>
+  otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
+
+  * {
+    color: #808080;
+    background: #000;
+  }
+</style>
+{% endblock %}

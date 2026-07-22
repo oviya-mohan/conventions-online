@@ -1,0 +1,30 @@
+{{ block title }} Processing choice... {{ endblock }} {{ block content }}
+<p>&nbsp;</p>
+
+<div class="progress">
+  <div
+    class="progress-bar progress-bar-striped progress-bar-animated"
+    role="progressbar"
+    style="width: 100%"
+  ></div>
+</div>
+
+<style>
+  /* Forces the entire page, standard oTree containers, and text to match your black theme */
+  body,
+  .otree-body,
+  .container,
+  .card,
+  .page-header {
+    background-color: black !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Hides the active countdown timer */
+  .otree-timer {
+    display: none !important;
+  }
+</style>
+{{ endblock }}

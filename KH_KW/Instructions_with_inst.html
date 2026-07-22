@@ -1,0 +1,67 @@
+{{ block title }} {{ endblock }} {{ block content }}
+
+<style>
+  .otree-body {
+    max-width: 1920px;
+    height: 1080px;
+  }
+  .tab {
+    margin-left: 175px;
+    margin-right: 175px;
+    font-size: 24px;
+  }
+
+  * {
+    color: #ffffff;
+    background: #000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<h1 align="center">Instructions</h1>
+
+<br /><br />
+<p class="tab">
+  In this study, you will be required to complete a simple decision-making task
+  as a pair with a randomly assigned partner. <br /><br />
+
+  In each round, you will be shown two colored squares. Please select one of the
+  squares by clicking on it.
+  <b
+    ><span style="color: rgb(227, 187, 76)"
+      >You and your partner will both be rewarded with 1 point if you choose the
+      same color.
+    </span></b
+  >The reward will be shown to you before you proceed to the next round.
+  <br />
+  <br />
+
+  <b
+    ><span style="color: rgb(227, 187, 76)">
+      Your aim is to maximize your reward. You will receive $15 for your
+      participation with an extra $0.01 for each point you receive in the
+      task.</span
+    ></b
+  >
+  <br />
+  <br />
+
+  There are a total of 300 rounds. You will have two short breaks. During these
+  breaks, you may rest your eyes or stretch but do not switch tabs or leave the
+  page. Doing so will invalidate your study participation.
+  <br /><br />
+
+  The study will be followed by two brief questions (max. 50 words response)
+  asking you about your experience. <br /><br />
+
+  The completion code will be shown on the last page, after the questions.
+  <br /><br />
+
+  Click <b> 'Next' </b> to begin.
+</p>
+
+<div align="center">{{next_button}}</div>
+{{ endblock }}
