@@ -5,7 +5,7 @@ import random
 # ==========================================
 # ⚙️ HUMAN SIMULATION TOGGLE
 # Change this to 'RANDOM' or 'FIXED' to test different behaviors
-HUMAN_STRATEGY = 'RANDOM'
+HUMAN_STRATEGY = 'FIXED'
 
 # The hierarchy the simulated human will use if set to 'FIXED'. 
 # Note: Since Constants.COLORS uses integers [1, 2, 3, 4, 5, 6, 7], 

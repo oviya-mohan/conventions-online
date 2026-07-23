@@ -143,17 +143,17 @@ class Player(BasePlayer):
             r_right = bot_elo[right_color]
 
             if r_left > r_right:
-                base_choice = left_color
+                self.bot_choice = left_color
             elif r_right > r_left:
-                base_choice = right_color
+                self.bot_choice = right_color
             else:
-                base_choice = random.choice([left_color, right_color])
+                self.bot_choice = random.choice([left_color, right_color])
 
-        # 6. Apply Pair-Based Mimicry Override (KH Only)
-        if strategy == 'KH_MINIMAL' and bot_novel:
-            self.bot_choice = human_color_choice
-        else:
-            self.bot_choice = base_choice
+        # # 6. Apply Pair-Based Mimicry Override (KH Only)
+        # if strategy == 'KH_MINIMAL' and bot_novel:
+        #     self.bot_choice = human_color_choice
+        # else:
+        #     self.bot_choice = base_choice
 
         # 7. Calculate Coordination Payoff
         if human_color_choice == self.bot_choice:
@@ -161,7 +161,7 @@ class Player(BasePlayer):
         else:
             self.payoff = 0
             
-        # bot_rejected = right_color if self.bot_choice == left_color else left_color
+        bot_rejected = right_color if self.bot_choice == left_color else left_color
 
         # 8. Update Elo Memory (KH Only)
         if strategy == 'KH_MINIMAL':
