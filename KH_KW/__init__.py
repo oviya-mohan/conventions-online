@@ -20,7 +20,7 @@ class Constants(BaseConstants):
     
     # --- BOT PARAMETERS ---
     COLORS = [1, 2, 3, 4, 5, 6, 7]
-    KW_HIERARCHY = {7: 7, 6: 6, 5: 5, 4: 4, 3: 3, 2: 2, 1: 1}
+    KW_HIERARCHY = {7: 2, 6: 4, 5: 5, 4: 3, 3: 6, 2: 1, 1: 7}
     K_FACTOR = 100.0
 
 #add waiting page for "Room"
@@ -133,9 +133,9 @@ class Player(BasePlayer):
         if strategy == 'KW_MINIMAL':
             # KW Bot relies strictly on hardcoded hierarchy
             if Constants.KW_HIERARCHY[left_color] > Constants.KW_HIERARCHY[right_color]:
-                base_choice = left_color
+                self.bot_choice = left_color
             else:
-                base_choice = right_color
+                self.bot_choice = right_color
 
         elif strategy == 'KH_MINIMAL':
             # KH Bot relies on its dynamic Elo memory
