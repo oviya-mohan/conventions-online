@@ -6,7 +6,7 @@ SESSION_CONFIGS = [
         display_name = "Collective Cognition Lab",
         app_sequence=['KH_KW'], #['I_OT_O'],
         num_demo_participants=1, #0 for using rooms
-        use_browser_bots = True,
+        # use_browser_bots = True,
         bot_strategy='KW_MINIMAL',
         bot_max_wait=0
     ),
