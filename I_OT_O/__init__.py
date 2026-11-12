@@ -36,8 +36,11 @@ class GroupWaitPage(WaitPage):
     
     @staticmethod
     def after_all_players_arrive(group):
-        # This function is executed after each group is formed
-        pass
+        import random
+        types = ['no_player', 'with_inst']
+        random.shuffle(types)
+        for player, inst_type in zip(group.get_players(), types):
+            player.participant.vars['instruction_type'] = inst_type
 
 ################################################################################
 #CREATING SESSIONS
@@ -193,7 +196,10 @@ class Consent(Page):
 class Instructions_with_inst(Page):
     @staticmethod
     def is_displayed(player):
-        return player.round_number == 1
+        return (
+            player.round_number == 1
+            and player.participant.vars.get('instruction_type') == 'with_inst'
+        )
     
 class Instructions_no_inst(Page):
     @staticmethod
@@ -203,7 +209,10 @@ class Instructions_no_inst(Page):
 class Instructions_no_player(Page):
     @staticmethod
     def is_displayed(player):
-        return player.round_number == 1
+        return (
+            player.round_number == 1
+            and player.participant.vars.get('instruction_type') == 'no_player'
+        )
 
 #Make_Choice - participants are presented with the two stimuli
 #they can make the choice by clicking on either one of the stimuli
@@ -381,8 +390,8 @@ class Thanks(Page):
 #page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 #Break, Final_Results, Questions, Questions_1, Thanks]
 
-# with_no_player
-page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_player, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# asymmetric (one Instructions_no_player, one Instructions_with_inst)
+page_sequence = [GroupWaitPage, Consent, Info, Instructions_no_player, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Final_Results, Questions, Questions_1, Thanks]
 
 ######################### For MTurk ##########################################
@@ -419,17 +428,18 @@ Break, Final_Results, Questions, Questions_1, Thanks]
 def custom_export(players):
     #header row #1
     # yield['participant_number', 'participant_code', 'age', 'sex', 'name', 'email']
-    yield['participant_number', 'participant_code', 'age' , 'sex','answer', 'answer_1']
+    yield['participant_number', 'participant_code', 'instruction_type', 'age', 'sex', 'answer', 'answer_1']
     for p in players:
         answer = p.Q
         answer_1 = p.Q_1
         age = p.age
         sex = p.sex
+        instruction_type = p.participant.vars.get('instruction_type', '')
         # email = p.email
         #write only for first (name) and last (answer) round
         if p.round_number == 1 or p.round_number == Constants.num_rounds:
             # yield[p.id_in_group, p.participant.code, age, sex, name, email]
-            yield[p.id_in_group, p.participant.code, age, sex, answer, answer_1]
+            yield[p.id_in_group, p.participant.code, instruction_type, age, sex, answer, answer_1]
 
     # header row #2
     yield ['session', 'participant_code', 'round_number', 'participant_number',

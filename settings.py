@@ -10,6 +10,12 @@ SESSION_CONFIGS = [
         bot_strategy='KH_MINIMAL',
         bot_max_wait=0
     ),
+    dict(
+        name='I_OT_O_assymetric',
+        display_name="Collective Cognition Lab (Asymmetric Instructions)",
+        app_sequence=['I_OT_O'],
+        num_demo_participants=2, #0 for using rooms
+    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
