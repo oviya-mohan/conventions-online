@@ -15,8 +15,8 @@ CCL
 class Constants(BaseConstants):
     name_in_url = 'I_OT_O'
     players_per_group = 2
-    num_rounds = 300 
-    #num_rounds = 294
+    #num_rounds = 300 
+    num_rounds = 294
     # for test runthroughs
     # num_rounds = 21
 
@@ -37,7 +37,11 @@ class GroupWaitPage(WaitPage):
     @staticmethod
     def after_all_players_arrive(group):
         import random
-        types = ['no_player', 'with_inst']
+        condition = group.session.config.get('asymmetric_condition', 'with_inst_no_player')
+        if condition == 'no_inst_no_player':
+            types = ['no_player', 'no_inst']
+        else:
+            types = ['no_player', 'with_inst']
         random.shuffle(types)
         for player, inst_type in zip(group.get_players(), types):
             player.participant.vars['instruction_type'] = inst_type
@@ -52,21 +56,21 @@ class Subsession(BaseSubsession):
 def creating_session(subsession: Subsession):
     session = subsession.session
     #all 21 possible combinations of the 7 colors
-    # combinations = [[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [2, 3],
-    # [2, 4], [2, 5], [2, 6], [2, 7], [3, 4], [3, 5], [3, 6], [3, 7], [4, 5],
-    # [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
+    combinations = [[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [2, 3],
+    [2, 4], [2, 5], [2, 6], [2, 7], [3, 4], [3, 5], [3, 6], [3, 7], [4, 5],
+    [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
 
     #all 10 possible combinations of 5 colors, exclusing tan(2) and dark blue(3)
-    combinations = [ [1, 4], [1, 5], [1, 6], [1, 7], [4, 5],
-    [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
+    # combinations = [ [1, 4], [1, 5], [1, 6], [1, 7], [4, 5],
+    # [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]
 
     #creates a matrix of matrices with randomized order of the above
     #combinations for all rounds in the session (defined by num_rounds)
     #each set of 21/10 rounds has all possible combinations
     global matrices
     matrices = []
-    # for i in range(0, int(Constants.num_rounds/21)):
-    for i in range(0, int(Constants.num_rounds/10)):
+    for i in range(0, int(Constants.num_rounds/21)):
+    # for i in range(0, int(Constants.num_rounds/10)):
         np.random.shuffle(combinations)
         for j in range(0, len(combinations)):
             matrices.append(combinations[j])
@@ -204,7 +208,10 @@ class Instructions_with_inst(Page):
 class Instructions_no_inst(Page):
     @staticmethod
     def is_displayed(player):
-        return player.round_number == 1
+        return (
+            player.round_number == 1
+            and player.participant.vars.get('instruction_type') == 'no_inst'
+        )
     
 class Instructions_no_player(Page):
     @staticmethod
@@ -390,8 +397,8 @@ class Thanks(Page):
 #page_sequence = [Consent, GroupWaitPage, Info, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 #Break, Final_Results, Questions, Questions_1, Thanks]
 
-# asymmetric (one Instructions_no_player, one Instructions_with_inst)
-page_sequence = [GroupWaitPage, Consent, Info, Instructions_no_player, Instructions_with_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+# asymmetric (supports with_inst_no_player and no_inst_no_player via session config)
+page_sequence = [GroupWaitPage, Consent, Info, Instructions_no_player, Instructions_with_inst, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Final_Results, Questions, Questions_1, Thanks]
 
 ######################### For MTurk ##########################################
