@@ -13,14 +13,14 @@ SESSION_CONFIGS = [
     dict(
         name='I_OT_O_assymetric',
         display_name="Collective Cognition Lab (Asymmetric Instructions: Inst vs. SS)",
-        app_sequence=['I_OT_O'],
+        app_sequence=['consent', 'I_OT_O'],
         num_demo_participants=2, #0 for using rooms
         asymmetric_condition='with_inst_no_player',
     ),
     dict(
         name='I_OT_O_asymmetric_no_inst',
         display_name="Collective Cognition Lab (Asymmetric: No Inst vs SS)",
-        app_sequence=['I_OT_O'],
+        app_sequence=['consent', 'I_OT_O'],
         num_demo_participants=2, #0 for using rooms
         asymmetric_condition='no_inst_no_player',
     ),

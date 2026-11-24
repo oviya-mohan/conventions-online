@@ -398,7 +398,7 @@ class Thanks(Page):
 #Break, Final_Results, Questions, Questions_1, Thanks]
 
 # asymmetric (supports with_inst_no_player and no_inst_no_player via session config)
-page_sequence = [GroupWaitPage, Consent, Info, Instructions_no_player, Instructions_with_inst, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
+page_sequence = [GroupWaitPage, Info, Instructions_no_player, Instructions_with_inst, Instructions_no_inst, WaitForPlayer, Make_Choice, Show_Choice, ResultsWaitPage, Results_Correct, Red_Flash, Results_Wrong,
 Break, Final_Results, Questions, Questions_1, Thanks]
 
 ######################### For MTurk ##########################################
